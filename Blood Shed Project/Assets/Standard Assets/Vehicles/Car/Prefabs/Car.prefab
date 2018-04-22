@@ -868,7 +868,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.9787292, y: 4.3977365, z: -10.56}
+  m_LocalPosition: {x: 12, y: 4, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400038}
@@ -1903,7 +1903,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5436,9 +5436,10 @@ GameObject:
   - component: {fileID: 92950777342294864}
   - component: {fileID: 81011631738436492}
   - component: {fileID: 114372964973428214}
+  - component: {fileID: 114002175534877116}
   m_Layer: 0
   m_Name: FPSCARCAM
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5452,7 +5453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4411043426764864}
   - component: {fileID: 65798697500114928}
-  - component: {fileID: 114618272409031732}
+  - component: {fileID: 114816418818215954}
   m_Layer: 0
   m_Name: GetInPoint
   m_TagString: Untagged
@@ -6119,6 +6120,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1204235401065464}
   m_Enabled: 1
+--- !u!114 &114002175534877116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1204235401065464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 899352ace3741a8409b1060adea5fcab, type: 2}
 --- !u!114 &114372964973428214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6136,7 +6149,7 @@ MonoBehaviour:
   autoZeroVerticalOnMobile: 0
   autoZeroHorizontalOnMobile: 0
   relative: 1
---- !u!114 &114618272409031732
+--- !u!114 &114816418818215954
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -6144,20 +6157,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232419975732896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55d6826b68a3a5e43949eaf627546529, type: 3}
+  m_Script: {fileID: 11500000, guid: c27cfb8a1716e8449b9e4ea6641f98a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  PlayerGeneric: {fileID: 1424764854044386, guid: 4d7ed87c9fe0b3b4882a2ad823f6d0b1,
-    type: 2}
+  PlayerCam: {fileID: 0}
+  carRb: {fileID: 5400000}
   scriptsToDissableWhenEntering:
   - {fileID: 11400002}
   - {fileID: 11400022}
   - {fileID: 11400024}
   - {fileID: 20936193807519226}
+  - {fileID: 114372964973428214}
+  playerBeh:
+  - {fileID: 0}
   CanEnter: 0
   Entered: 0
   placeToCreate: {fileID: 4283325403303644}
+  allAudioSources: []
 --- !u!124 &124945204818237378
 Behaviour:
   m_ObjectHideFlags: 1
