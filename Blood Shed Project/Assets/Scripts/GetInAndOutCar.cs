@@ -53,6 +53,7 @@ public class GetInAndOutCar : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.E)&& CanEnter == false &&Entered) {
 			camForCar.transform.gameObject.tag = "Untagged";
 			PlayerCam.SetActive (true);
+			CanEnter = false;
 			for (int i = 0; i < playerBeh.Length; i++) {
 				playerBeh [i].enabled = true;
 			}
@@ -70,7 +71,10 @@ public class GetInAndOutCar : MonoBehaviour {
 	void OnTriggerEnter (Collider triga) {
 		if (triga.gameObject.tag.Equals ("Player")) {
 			CanEnter = true;
-		} else {
+		}
+	}
+	void OnTriggerExit (Collider triga) {
+		if (triga.gameObject.tag.Equals ("Player")) {
 			CanEnter = false;
 		}
 	}
