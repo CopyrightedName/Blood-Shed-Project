@@ -13,8 +13,6 @@ public class GetInAndOutCar : MonoBehaviour {
 	public bool Entered;
 	public Transform placeToCreate;
 	public AudioSource[] allAudioSources;
-	public string camTag;
-	public GameObject camForCar;
 	// Use this for initialization
 	void Start () {
 		for (int i = 0; i < scriptsToDissableWhenEntering.Length; i++) {
@@ -35,7 +33,6 @@ public class GetInAndOutCar : MonoBehaviour {
 		Player = GameObject.FindGameObjectWithTag ("Player");
 		if (Input.GetKeyDown (KeyCode.F)&& CanEnter == true) {
 			PlayerCam.SetActive (false);
-			camForCar.transform.gameObject.tag = camTag;
 			for (int i = 0; i < playerBeh.Length; i++) {
 				playerBeh [i].enabled = false;
 			}
@@ -51,9 +48,7 @@ public class GetInAndOutCar : MonoBehaviour {
 			}
 		}
 		if (Input.GetKeyDown (KeyCode.E)&& CanEnter == false &&Entered) {
-			camForCar.transform.gameObject.tag = "Untagged";
 			PlayerCam.SetActive (true);
-			CanEnter = false;
 			for (int i = 0; i < playerBeh.Length; i++) {
 				playerBeh [i].enabled = true;
 			}
@@ -71,10 +66,7 @@ public class GetInAndOutCar : MonoBehaviour {
 	void OnTriggerEnter (Collider triga) {
 		if (triga.gameObject.tag.Equals ("Player")) {
 			CanEnter = true;
-		}
-	}
-	void OnTriggerExit (Collider triga) {
-		if (triga.gameObject.tag.Equals ("Player")) {
+		} else {
 			CanEnter = false;
 		}
 	}
