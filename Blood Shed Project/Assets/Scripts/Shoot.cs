@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class Shoot : MonoBehaviour {
 
 	public GameObject bullet;
@@ -8,6 +8,13 @@ public class Shoot : MonoBehaviour {
 	public float delayTime = 0.5f;
 	AudioSource audioSource;
 	public AudioClip shoot;
+	public Text ammotxt;
+	public float maxammo;
+	public float currammo;
+	public Animation gunAnims;
+	public bool canFire;
+	public GameObject bulletshell;
+	public Transform shellPoint;
 	
 	private float counter = 0;
 	
@@ -15,14 +22,36 @@ public class Shoot : MonoBehaviour {
 	{
 		audioSource = GetComponent<AudioSource>();
 	}
+	void Update () {
+		if (currammo <= 0) {
+			canFire = false;
+		} else {
+			canFire = true;
+		}
+
+		ammotxt.text = currammo.ToString() + " / " + maxammo.ToString();
+	}
+	IEnumerator reload () 
+	{
+		gunAnims.Play ("Reload");
+		yield return new WaitForSeconds (1.9F);
+		currammo += maxammo;
+
+	}
+
 	void FixedUpdate ()	
  	{
-		if(Input.GetKey(KeyCode.Mouse0) && counter > delayTime)
+		if (Input.GetKeyDown (KeyCode.R)&&!canFire) {
+			StartCoroutine(reload());
+		}
+		if(Input.GetKey(KeyCode.Mouse0) && counter > delayTime && canFire)
 		{
+			Instantiate (bulletshell, shellPoint.transform.position, Quaternion.identity);
+			currammo -= 1;
 			Instantiate(bullet, transform.position, transform.rotation);
 			audioSource.PlayOneShot (shoot, 0.25f);
 			counter = 0;
-			
+			gunAnims.Play ("Shoot");
 			RaycastHit hit;
 			Ray ray = new Ray(transform.position, transform.forward);
 			if(Physics.Raycast(ray, out hit, 100f))
