@@ -56,8 +56,8 @@ public class GetInAndOutCar : MonoBehaviour {
 			for (int i = 0; i < scriptsToDissableWhenEntering.Length; i++) {
 				scriptsToDissableWhenEntering [i].enabled = false;
 			}
-			carRb.isKinematic = true;
-			carRb.useGravity = false;
+			carRb.isKinematic = false;
+			carRb.useGravity = true;
 			foreach( AudioSource audioS in allAudioSources) {
 				audioS.Stop();
 			}

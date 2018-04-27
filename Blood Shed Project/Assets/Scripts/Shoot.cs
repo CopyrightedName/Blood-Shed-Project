@@ -15,6 +15,7 @@ public class Shoot : MonoBehaviour {
 	public bool canFire;
 	public GameObject bulletshell;
 	public Transform shellPoint;
+	public GameObject muzzle;
 	
 	private float counter = 0;
 	
@@ -38,6 +39,14 @@ public class Shoot : MonoBehaviour {
 		currammo += maxammo;
 
 	}
+	IEnumerator muzzlevoid () 
+	{
+		muzzle.SetActive (true);
+		muzzle.transform.Rotate (0f,0f,7f);
+		yield return new WaitForSeconds (0.5f);
+		muzzle.SetActive (false);
+
+	}
 
 	void FixedUpdate ()	
  	{
@@ -46,6 +55,7 @@ public class Shoot : MonoBehaviour {
 		}
 		if(Input.GetKey(KeyCode.Mouse0) && counter > delayTime && canFire)
 		{
+			StartCoroutine(muzzlevoid());
 			Instantiate (bulletshell, shellPoint.transform.position, Quaternion.identity);
 			currammo -= 1;
 			Instantiate(bullet, transform.position, transform.rotation);
